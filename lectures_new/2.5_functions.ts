@@ -19,6 +19,12 @@ function anotherFunc(a: number, b: string): number {
     return a;
 }
 
+// ===================
+// b is optional and has the type of string because the default value is a string
+function funcWithOptionalParameter(a: number, b = "hello"): number {
+    return a;
+}
+
 // Type Guards. It is often the case that you have a specific type like person but there is the possibility that it is null. To check it you can define type guards.
 // The special thing about type guards is the declaration in the return type
 type Person = {
@@ -39,6 +45,27 @@ const person = getPerson();
 if (isPerson(person)) {
     console.log(person.name);
 }
+
+// Some functions need to throw an error if something exexpected happened. These are called assertion functions
+// In TS they can be modeled with the "assertion signature"
+// They work like type guards but instead of returning a boolean they throw an error if the type is not correct and the value that is validated is in the rest of the scope the asserted value
+function assertsIsString(val: any): asserts val is string {
+    if (typeof val !== "string") {
+        throw new Error("Not a string!");
+    }
+}
+
+function getMaybeString(): string | number {
+    return "Hello World";
+}
+
+const str = getMaybeString();
+//    ^?
+assertsIsString(str);
+// str is now a string and not a string | number
+str
+//^?
+
 
 // Sometimes you want to map the behaviour of a function based on the type of the parameter.
 // Therefor you can use generics or function overloads or both at the same time to define the behaviour.

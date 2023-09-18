@@ -1,4 +1,4 @@
-// Pre pre Basics: Always hover over the variable to see the type AND install Twoslash Query Comments extension to see the type in the comments
+// Pre pre Basics: Always hover over the variable to see the type AND install Twoslash Query Comments extension in VSC to display the type in the comments
 
 
 // Basic Types available in TS
@@ -15,11 +15,20 @@ interface BasicTypes {
     prop9: unknown; // ensure someone using this type declares what the type is
     prop10: never; // it's not possible that this type could happen
     prop11: void; // a function which returns undefined or has no return value
+    prop12: object; // any non-primitive type -> not recommended to use
+    prop13?: string; // optional property declared with ?: -> can be undefined or the type
 }
 
 // prefer inferred types for simple types for example:
 const myString = "Hello World";
-const check = true;
+//    ^?
+let check = true;
+//    ^?
+
+// Note that the inferred type is broad or narrow depending on the const or let keyword for simple types
+const myString2 = "Hello World";
+//    ^?
+let myString3 = "Hello World";
 //    ^?
 
 // FYI prefer explicit types for complex types or return values of complex functions
@@ -33,6 +42,7 @@ function testFunction(prop1: string, ...restProps: any[]): string | any {
 }
 
 // Arrays can be defined in two ways. The second way is normally preferred because it's more readable
+// In this example the type would be inferred correctly but for representation purposes it's defined explicitly
 const myArray: string[] = ["Hello", "World"];
 const myArray2: Array<string> = ["Hello", "World"];
 
@@ -45,6 +55,12 @@ function definedInAnotherFile(): any {
 }
 
 const result = definedInAnotherFile() as string;
+// Also works and is common in languages like C# but should be avoided in TS because it isn't as readable
+const result1 = (<string> definedInAnotherFile());
+
+// You can create new objects with the type helper Record
+
+type ObjectOfFruits = Record<"apple" | "banana" | "orange", number>;
 
 // There are 3 possible ways to define your types: Classes, Interfaces and Type Aliases
 // The only naming convention for interfaces or types in generel is to define the name with a capital letter. There is no need to name it with a capital I or T at the beginning.

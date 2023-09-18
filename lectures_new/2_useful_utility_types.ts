@@ -38,7 +38,7 @@ type MutableUser = Mutable<ReadonlyUser>;
 // Utility Types for Union Types
 
 type Role = "admin" | "user" | "anonymous";
-type RoleAttributes = 
+type RoleAttributes =
     | { role: "admin", orgId: string; }
     | { role: "user" }
     | { role: "anonymous" };
@@ -62,3 +62,6 @@ type FuncParameters = Parameters<Func>;
 
 type PromiseNumber = Promise<number>;
 type AwaitedType = Awaited<PromiseNumber>;
+
+
+export { }

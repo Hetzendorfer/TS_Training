@@ -72,3 +72,5 @@ type TransformedFruit = {
     // ^?
   [X in Fruit as X["name"]]: `${X["name"]}:${X["color"]}`;
 }[Fruit["name"]];
+
+export {}

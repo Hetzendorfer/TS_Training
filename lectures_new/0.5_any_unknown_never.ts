@@ -91,3 +91,5 @@ type NeverIsRemoved = string | never | number;
 
 // Never is always the only value when intersected with other Types
 type OnlyNever = string & never;
+
+export {};

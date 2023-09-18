@@ -35,10 +35,34 @@ const newPerson: PersonWithAgeAndParent = {
     },
 };
 
-// Type Definitions of properties can be made optional with the "?" operator
+// Type Definitions of properties can be made optional with the "?:" operator
 interface PersonWithOptionalAge extends Person {
     age?: number;
 }
+
+
+// Dynamic Interface
+interface DynamicInterface {
+    [index: string]: number;
+}
+
+const test: DynamicInterface = {
+    wurst: 1,
+    egal: "asd", // error because the value is a string and not a number
+}
+
+// Array Like Interface
+interface ArrayInterface<T> {
+    [index: number]: T;
+    length: number;
+}
+
+const customArr: ArrayInterface<string> = [
+    "1",
+    "2",
+    "3",
+    "4",
+];
 
 
 export {};
